@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import styles from './Aloha.module.css'
 
 class Aloha extends Component {
   constructor(props) {
@@ -28,13 +29,13 @@ class Aloha extends Component {
     }
 
     return (
-      <>
+      <div className= {styles.container}>
         <h1>
           {isGreeting ? 'Hello' : 'Goodbye'}, {name}
         </h1>
-        <button onClick={this.switchState}>Switch</button>
-        <button onClick={this.deleteHandler}>X</button>
-      </>
+        <button className= {styles.btn} onClick={this.switchState}>Switch</button>
+        <button className= {styles.btn} onClick={this.deleteHandler}>X</button>
+      </div>
     );
   }
 }
