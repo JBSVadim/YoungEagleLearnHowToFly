@@ -5,6 +5,8 @@
   border: 3px solid red;
   padding: 30px;
   box-sizing: border-box;
+  background-image: url(https://image.freepik.com/free-vector/white-abstract-background_23-2148812993.jpg);
+  background-size: cover;
 }
 
 .countPlaceholder {
@@ -15,6 +17,20 @@
 }
 
 .divFix {
+  padding-top: 15px;
   display: flex;
   justify-content: center;
+}
+
+.stateMode {
+  color: red;
+  font-size: 1,5rem;
+  font-weight: bold;
+  font-style: italic;
+}
+.stateMode2 {
+  color: green;
+  font-size: 1,5rem;
+  font-weight: bold;
+  font-style: italic;
 }
