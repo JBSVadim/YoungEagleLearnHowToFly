@@ -31,16 +31,16 @@ class Counter extends Component {
     console.log({isAdding})
     return (
       <article className={styles.container}>
-        <h1>Lets Start to Count with JSX</h1>
-        <h2 className={isAdding ? styles.stateMode2 : styles.stateMode}>{isAdding ? 'Adding' : 'Minus'}</h2>
+        <h1>Do you have Girlfriend?</h1>
+        <h2 className={isAdding ? styles.stateMode2 : styles.stateMode}>{isAdding ? 'No' : 'Yes'}</h2>
         <div>
           <div>
             <span className={styles.countPlaceholder}>{count}$</span>
-            <span className={styles.countPlaceholder}>This is your money, beach {this.props.step}$</span>
+            <span className={styles.countPlaceholder}>Your money {this.props.step}$</span>
           </div>
           <div className={styles.divFix}>
            <button onClick={this.countResult}>Click</button>
-           <button onClick={this.toggleMod}>ChangeMode</button>
+           <button onClick={this.toggleMod}>Change Mode</button>
           </div>
         </div>
       </article>
