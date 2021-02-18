@@ -7,13 +7,14 @@
   box-sizing: border-box;
   background-image: url(https://image.freepik.com/free-vector/white-abstract-background_23-2148812993.jpg);
   background-size: cover;
+  text-align: center;
 }
 
 .countPlaceholder {
   font-size: 2rem;
 }
 .countPlaceholder + .countPlaceholder {
-  padding-left: 10px;
+  margin-left: 10px;
 }
 
 .divFix {
@@ -33,4 +34,8 @@
   font-size: 1,5rem;
   font-weight: bold;
   font-style: italic;
+}
+
+.btn + .btn{
+ margin-left: 15px;
 }

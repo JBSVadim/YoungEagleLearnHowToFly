@@ -8,7 +8,10 @@ class Counter extends Component {
     this.state = {
       count: 0,
       isAdding: true,
+      isRunning: false,
+      interval: 1,
     }
+    this.timeoutId = null;
   }
     
     countResult = () => this.setState((state, props) => {
@@ -19,13 +22,34 @@ class Counter extends Component {
         count: newCountState
       }
     })
-       
+    
+    toggleMode = () => 
+    this.setState((state, props)=>{
+    const {isRunning} = state;
+    return { isRunning: !isRunning } 
+  });  
    
     toggleMod = () => this.setState((state, props)=>{
      const {isAdding} = state
      return {isAdding: !isAdding}
     })
-  
+
+    handleChange = ({target: {name, value}}) =>  this.setState({[name]: value})
+   
+    clear = () => {
+      clearTimeout(this.timeoutId);
+      this.timeoutId = null;
+    };
+    
+    componentDidUpdate() {
+      const  {isRunning, interval}  = this.state;
+      this.clear();
+      if (isRunning) {
+        this.timeoutId = setTimeout(this.countResult, interval*1000);}}
+    
+        componentWillUnmount() {
+          this.clear();
+        }    
   render () {
     const {count, isAdding} = this.state;
     console.log({isAdding})
@@ -39,8 +63,11 @@ class Counter extends Component {
             <span className={styles.countPlaceholder}>Your money {this.props.step}$</span>
           </div>
           <div className={styles.divFix}>
-           <button onClick={this.countResult}>Click</button>
-           <button onClick={this.toggleMod}>Change Mode</button>
+           <button className={styles.btn} onClick={this.countResult}>Click</button>
+           <button className={styles.btn} onClick={this.toggleMod}>Change Mode</button>
+           <button onClick={this.toggleMode}>Auto click</button>
+          <input onChange={this.handleChange} pattern="[0-9]{1,5}" type="number" name="interval" placeholder="Update time"/>
+        
           </div>
         </div>
       </article>

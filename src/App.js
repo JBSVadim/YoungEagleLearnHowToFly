@@ -5,11 +5,13 @@ import Aloha from './components/Aloha';
 import SignInForm from './components/SignInForm'
 import Counter from './components/CountControl/Count'
 import CountControl from './components/CountControl'
+import Carusel from './components/Slaider/Carusel'
 
 
 function App(props) {
   return (
     <>
+      <Carusel/>
       <CountControl/>
     </>
   );
