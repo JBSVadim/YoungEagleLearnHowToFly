@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import styles from './Count.module.css'
-
+import cx from 'classname'
 
 class Counter extends Component {
   constructor(props) {
@@ -23,6 +23,14 @@ class Counter extends Component {
       }
     })
     
+    resetMode = () =>
+    this.setState((state,props)=> {
+      return {
+        isRunning: false,
+        count: 0
+      }
+    })
+
     toggleMode = () => 
     this.setState((state, props)=>{
     const {isRunning} = state;
@@ -34,7 +42,12 @@ class Counter extends Component {
      return {isAdding: !isAdding}
     })
 
-    handleChange = ({target: {name, value}}) =>  this.setState({[name]: value})
+    handleChange = ({target: {name, value}}) => {
+    if (value >= 1 ) {
+     return this.setState({[name]: value}) }
+    if(value < 1){
+      return this.setState({[name]: 1})
+    }}
    
     clear = () => {
       clearTimeout(this.timeoutId);
@@ -44,7 +57,7 @@ class Counter extends Component {
     componentDidUpdate() {
       const  {isRunning, interval}  = this.state;
       this.clear();
-      if (isRunning) {
+      if (isRunning)   {
         this.timeoutId = setTimeout(this.countResult, interval*1000);}}
     
         componentWillUnmount() {
@@ -53,7 +66,7 @@ class Counter extends Component {
   render () {
     const {count, isAdding} = this.state;
     console.log({isAdding})
-    return (
+     return (
       <article className={styles.container}>
         <h1>Do you have Girlfriend?</h1>
         <h2 className={isAdding ? styles.stateMode2 : styles.stateMode}>{isAdding ? 'No' : 'Yes'}</h2>
@@ -66,6 +79,7 @@ class Counter extends Component {
            <button className={styles.btn} onClick={this.countResult}>Click</button>
            <button className={styles.btn} onClick={this.toggleMod}>Change Mode</button>
            <button onClick={this.toggleMode}>Auto click</button>
+           <button onClick={this.resetMode}>Reset</button>
           <input onChange={this.handleChange} pattern="[0-9]{1,5}" type="number" name="interval" placeholder="Update time"/>
         
           </div>
